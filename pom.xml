@@ -5,13 +5,14 @@
   <groupId>com.mpexample</groupId>
   <artifactId>mpHelloWorld</artifactId>
   <name>WildFly Swarm Example</name>
-  <version>1.0.0-SNAPSHOT</version>
+  <version>1.0.0</version>
   <packaging>war</packaging>
 
   <properties>
     <version.wildfly.swarm>2017.8.1</version.wildfly.swarm>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
+    <fabric8.maven.plugin.version>3.5.22</fabric8.maven.plugin.version>
     <failOnMissingWebXml>false</failOnMissingWebXml>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
@@ -43,6 +44,25 @@
             </goals>
           </execution>
         </executions>
+      </plugin>
+      <plugin>
+        <groupId>io.fabric8</groupId>
+        <artifactId>fabric8-maven-plugin</artifactId>
+        <version>${fabric8.maven.plugin.version}</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>resource</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <generator>
+            <includes>
+              <include>wildfly-swarm</include>
+            </includes>
+          </generator>
+        </configuration>
       </plugin>
     </plugins>
   </build>
